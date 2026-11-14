@@ -29,7 +29,7 @@ npx --yes hyperframes@0.9.37 render . -o renders/reel.mp4 --fps 30
 | 1 | Add objects to the list | edit `objetos.csv` (status `pendente`) | 🧠 you |
 | 2 | Prepare the next reel | `node ferramentas/novo-reel.mjs` | 🤖 agent (Monday 9 a.m. task) |
 | 3 | Design the object, if it is new | fill in `objeto.js` (`RECEITA.md` (in Portuguese), step 3) | 🤖 agent |
-| 4 | Make the reel | `bash ferramentas/fazer-reel.sh reels/<pasta>` | ⚙️ script |
+| 4 | Make the reel | `bash ferramentas/fazer-reel.sh <objeto>` | ⚙️ script |
 | 5 | Watch and approve | `node ferramentas/status.mjs <objeto> aprovado` | 🧠 you |
 | 6 | Post 1 approved reel | `node ferramentas/postar-instagram.mjs` | 🤖 agent (Monday, Wednesday, and Friday at 6 p.m.) |
 

@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 # Faz um reel já preparado pelo novo-reel.mjs: som → check → fotos paradas → render → prontos/.
-#   bash ferramentas/fazer-reel.sh reels/2026-11-15-goiaba
+#   bash ferramentas/fazer-reel.sh goiaba          (ou a pasta: reels/2026-11-15-goiaba)
 # Se um passo falha, o objeto volta para "pendente" e o motivo fica em prontos/<nome>/FALHOU.md.
 # Nunca posta nada: só deixa o reel em prontos/ com status "pronto" para você assistir.
 set -uo pipefail
 RAIZ="$(cd "$(dirname "$0")/.." && pwd)"
-PASTA="$(cd "${1:?passe a pasta do reel, ex.: reels/2026-11-15-goiaba}" && pwd)"
+ARG="${1:?passe o objeto (ex.: goiaba) ou a pasta do reel (ex.: reels/2026-11-15-goiaba)}"
+# aceita o nome do objeto: usa a pasta mais nova em reels/ que termina com -<objeto>
+if [ ! -d "$ARG" ]; then ARG="$(ls -d "$RAIZ"/reels/*-"$ARG" 2>/dev/null | sort | tail -1)"; fi
+[ -d "$ARG" ] || { echo "não achei a pasta do reel: rode antes node ferramentas/novo-reel.mjs"; exit 1; }
+PASTA="$(cd "$ARG" && pwd)"
 NOME="$(basename "$PASTA")"
 OBJ="$(node -e "import('$PASTA/objeto.js').then(m=>console.log(m.OBJETO.nome))")"
 SAIDA="$RAIZ/prontos/$NOME"
@@ -25,7 +29,7 @@ $HF check >/dev/null 2>&1                                  || falhou "check (rod
 $HF snapshot . --at 3.4,24,34 --no-end -o fotos >/dev/null || falhou "fotos paradas"
 $HF render . -o renders/reel.mp4 --fps 30                  || falhou "render"
 DUR="$(ffprobe -v error -show_entries format=duration -of csv=p=0 renders/reel.mp4)"
-python3 -c "import sys; d=float('$DUR'); sys.exit(0 if 35.5<=d<=36.5 else 1)" || falhou "duração $DUR s (esperado 36 s)"
+node -e "process.exit(Math.abs(Number('$DUR') - 36) <= 0.5 ? 0 : 1)" || falhou "duração $DUR s (esperado 36 s)"
 
 cp renders/reel.mp4 "$SAIDA/reel.mp4"
 cp fotos/frame-*.png "$SAIDA/"

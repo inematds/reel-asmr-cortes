@@ -169,7 +169,7 @@
   <div class="quadros">
     <figure><img src="../assets/quadro-capa.jpg" alt="Cuadro 0: maracuyá entero, título y contador en cero" loading="lazy"><figcaption>0 s · la portada ya dice lo que va a pasar</figcaption></figure>
     <figure><img src="../assets/quadro-fatias.jpg" alt="Ronda de 10 cortes: el maracuyá en rebanadas con las semillas a la vista" loading="lazy"><figcaption>3 s · 10 cortes: las rebanadas se abren y muestran el interior</figcaption></figure>
-    <figure><img src="../assets/quadro-picar.jpg" alt="Ronda de 1.000 cortes: el montón picado en trocitos" loading="lazy"><figcaption>24 s · 1.000 cortes: se vuelve un montón de trocitos</figcaption></figure>
+    <figure><img src="../assets/quadro-picar.jpg" alt="Ronda de 1.000 cortes: el montón picado en trocitos" loading="lazy"><figcaption>24 s · ronda de 1.000: se vuelve un montón de trocitos</figcaption></figure>
     <figure><img src="../assets/quadro-potes.jpg" alt="Final: tres frascos con lo que quedó de cada ronda y la pregunta" loading="lazy"><figcaption>34 s · los 3 frascos y la pregunta para comentar</figcaption></figure>
   </div>
   <div class="grid g3" style="margin-top:22px">
@@ -275,7 +275,7 @@
   <div class="step"><div class="b">3</div><div>
     <h3>Hacer el reel</h3>
     <p>Sonido, revisión, 3 fotos fijas y render. El resultado va a <code>prontos/&lt;pasta&gt;/</code> con <code>reel.mp4</code>, las fotos y <code>legenda.txt</code>. Si un paso falla, el objeto vuelve a <code>pendente</code> y el motivo queda en <code>FALHOU.md</code>.</p>
-<pre><span class="k">bash</span> ferramentas/fazer-reel.sh reels/2026-11-15-maracuja</pre>
+<pre><span class="k">bash</span> ferramentas/fazer-reel.sh maracuja</pre>
   </div></div>
 
   <div class="step"><div class="b">4</div><div>
@@ -295,7 +295,7 @@
 
   <div class="step"><div class="b">6</div><div>
     <h3>Programar las dos tareas</h3>
-    <p>Los prompts están en <code>agendar/</code>. Con cron y Claude Code en la terminal (cambia la ruta), o pega el prompt en la app de escritorio de Claude y pide una tarea programada en el mismo horario.</p>
+    <p>Los prompts están en <code>agendar/</code>. Con cron y Claude Code en la terminal (cambia la ruta), o pega el prompt en la app de escritorio de Claude y pide una tarea programada en el mismo horario. Cron es el programador de tareas de Linux y Mac: <code>crontab -e</code> abre un editor de texto en la terminal; pega las dos líneas al final, guarda y cierra (en nano: Ctrl+O, Enter, Ctrl+X). <code>--allowedTools</code> deja que la tarea use la terminal sola. En Windows, usa WSL o la app de escritorio.</p>
 <pre><span class="k">crontab</span> -e
 <span class="c"># lunes 9 h: hace 3 reels (nunca publica)</span>
 0 9 * * 1      cd /caminho/reel-asmr-cortes &amp;&amp; claude -p "$(cat agendar/1-fazer-reels.md)" --allowedTools "Bash Read Edit Write" &gt;&gt; agenda.log 2&gt;&amp;1

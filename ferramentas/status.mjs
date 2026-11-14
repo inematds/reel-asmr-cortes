@@ -19,6 +19,10 @@ export function mudar(objeto, status) {
   if (!STATUS.includes(status)) throw new Error(`status "${status}" não existe (use: ${STATUS.join(', ')})`);
   const linhas = readFileSync(CSV, 'utf8').trim().split('\n');
   let achou = false;
+  if (status === 'aprovado') {
+    const atual = ler().find((r) => r.objeto === objeto);
+    if (atual && atual.status !== 'pronto') throw new Error(`${objeto} está "${atual.status}": só dá para aprovar um reel "pronto" (feito e assistido)`);
+  }
   for (let i = 1; i < linhas.length; i++) {
     const c = linhas[i].split(',');
     if (c[0].trim() === objeto) { c[c.length - 1] = status; linhas[i] = c.join(','); achou = true; }
@@ -29,6 +33,6 @@ export function mudar(objeto, status) {
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const [obj, st] = process.argv.slice(2);
-  if (obj && st) { mudar(obj, st); console.log(`${obj}: ${st}`); }
+  if (obj && st) { try { mudar(obj, st); console.log(`${obj}: ${st}`); } catch (e) { console.error('✗ ' + e.message); process.exit(1); } }
   else for (const r of ler()) console.log(`${r.status.padEnd(9)} ${r.objeto}`);
 }

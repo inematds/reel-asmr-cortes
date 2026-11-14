@@ -169,7 +169,7 @@
   <div class="quadros">
     <figure><img src="../assets/quadro-capa.jpg" alt="Frame 0: whole passion fruit, title, and counter at zero" loading="lazy"><figcaption>0 s · the cover already shows what will happen</figcaption></figure>
     <figure><img src="../assets/quadro-fatias.jpg" alt="Round of 10 cuts: passion fruit in slices with seeds showing" loading="lazy"><figcaption>3 s · 10 cuts: the slices open to reveal the inside</figcaption></figure>
-    <figure><img src="../assets/quadro-picar.jpg" alt="Round of 1,000 cuts: the pile chopped into small pieces" loading="lazy"><figcaption>24 s · 1,000 cuts: it becomes a pile of small pieces</figcaption></figure>
+    <figure><img src="../assets/quadro-picar.jpg" alt="Round of 1,000 cuts: the pile chopped into small pieces" loading="lazy"><figcaption>24 s · the 1,000 round: it becomes a pile of small pieces</figcaption></figure>
     <figure><img src="../assets/quadro-potes.jpg" alt="Ending: three jars with what is left from each round and the question" loading="lazy"><figcaption>34 s · the 3 jars and the question for viewers to answer</figcaption></figure>
   </div>
   <div class="grid g3" style="margin-top:22px">
@@ -275,7 +275,7 @@
   <div class="step"><div class="b">3</div><div>
     <h3>Make the reel</h3>
     <p>Sound, checks, 3 still photos, and render. The result goes to <code>prontos/&lt;pasta&gt;/</code> with <code>reel.mp4</code>, the photos, and <code>legenda.txt</code>. If a step fails, the object returns to <code>pendente</code> and the reason is recorded in <code>FALHOU.md</code>.</p>
-<pre><span class="k">bash</span> ferramentas/fazer-reel.sh reels/2026-11-15-maracuja</pre>
+<pre><span class="k">bash</span> ferramentas/fazer-reel.sh maracuja</pre>
   </div></div>
 
   <div class="step"><div class="b">4</div><div>
@@ -295,7 +295,7 @@
 
   <div class="step"><div class="b">6</div><div>
     <h3>Schedule the two tasks</h3>
-    <p>The prompts are in <code>agendar/</code> (in Portuguese). Use cron and Claude Code in the terminal (replace the path), or paste the prompt into the Claude desktop app and ask it to schedule a task for the same time.</p>
+    <p>The prompts are in <code>agendar/</code> (in Portuguese). Use cron and Claude Code in the terminal (replace the path), or paste the prompt into the Claude desktop app and ask it to schedule a task for the same time. Cron is the scheduler on Linux and Mac: <code>crontab -e</code> opens a text editor in the terminal; paste the two lines at the end, save and close (in nano: Ctrl+O, Enter, Ctrl+X). <code>--allowedTools</code> lets the task use the terminal on its own. On Windows, use WSL or the desktop app.</p>
 <pre><span class="k">crontab</span> -e
 <span class="c"># Monday 9 am: makes 3 reels (never posts)</span>
 0 9 * * 1      cd /caminho/reel-asmr-cortes &amp;&amp; claude -p "$(cat agendar/1-fazer-reels.md)" --allowedTools "Bash Read Edit Write" &gt;&gt; agenda.log 2&gt;&amp;1

@@ -169,7 +169,7 @@
   <div class="quadros">
     <figure><img src="assets/quadro-capa.jpg" alt="Quadro 0: maracujá inteiro, título e contador zerado" loading="lazy"><figcaption>0 s · a capa já diz o que vai acontecer</figcaption></figure>
     <figure><img src="assets/quadro-fatias.jpg" alt="Rodada de 10 cortes: o maracujá em fatias com as sementes à mostra" loading="lazy"><figcaption>3 s · 10 cortes: as fatias abrem e mostram o miolo</figcaption></figure>
-    <figure><img src="assets/quadro-picar.jpg" alt="Rodada de 1.000 cortes: o monte picado em pedacinhos" loading="lazy"><figcaption>24 s · 1.000 cortes: vira um monte de pedacinhos</figcaption></figure>
+    <figure><img src="assets/quadro-picar.jpg" alt="Rodada de 1.000 cortes: o monte picado em pedacinhos" loading="lazy"><figcaption>24 s · rodada de 1.000: vira um monte de pedacinhos</figcaption></figure>
     <figure><img src="assets/quadro-potes.jpg" alt="Final: três potes com o que sobrou de cada rodada e a pergunta" loading="lazy"><figcaption>34 s · os 3 potes e a pergunta para comentar</figcaption></figure>
   </div>
   <div class="grid g3" style="margin-top:22px">
@@ -275,7 +275,7 @@
   <div class="step"><div class="b">3</div><div>
     <h3>Fazer o reel</h3>
     <p>Som, conferência, 3 fotos paradas e render. O resultado vai para <code>prontos/&lt;pasta&gt;/</code> com <code>reel.mp4</code>, as fotos e <code>legenda.txt</code>. Se um passo falhar, o objeto volta para <code>pendente</code> e o motivo fica em <code>FALHOU.md</code>.</p>
-<pre><span class="k">bash</span> ferramentas/fazer-reel.sh reels/2026-11-15-maracuja</pre>
+<pre><span class="k">bash</span> ferramentas/fazer-reel.sh maracuja</pre>
   </div></div>
 
   <div class="step"><div class="b">4</div><div>
@@ -295,7 +295,7 @@
 
   <div class="step"><div class="b">6</div><div>
     <h3>Agendar as duas tarefas</h3>
-    <p>Os prompts estão em <code>agendar/</code>. Com cron e o Claude Code no terminal (troque o caminho), ou cole o prompt no app desktop do Claude e peça uma tarefa agendada no mesmo horário.</p>
+    <p>Os prompts estão em <code>agendar/</code>. Com cron e o Claude Code no terminal (troque o caminho), ou cole o prompt no app desktop do Claude e peça uma tarefa agendada no mesmo horário. O cron é o agendador do Linux e do Mac: <code>crontab -e</code> abre um editor de texto no terminal; cole as duas linhas no fim, salve e feche (no nano: Ctrl+O, Enter, Ctrl+X). O <code>--allowedTools</code> deixa a tarefa usar o terminal sozinha. No Windows, use o WSL ou o app desktop.</p>
 <pre><span class="k">crontab</span> -e
 <span class="c"># segunda 9h: faz 3 reels (nunca posta)</span>
 0 9 * * 1      cd /caminho/reel-asmr-cortes &amp;&amp; claude -p "$(cat agendar/1-fazer-reels.md)" --allowedTools "Bash Read Edit Write" &gt;&gt; agenda.log 2&gt;&amp;1

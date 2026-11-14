@@ -19,7 +19,7 @@ Status de cada objeto: `pendente` → `fazendo` → `pronto` → (você) `aprova
    - `pasta`: a cor do creme no pote da rodada de 1.000;
    - `legenda`: uma frase + a pergunta do fim + até 3 hashtags.
    Gostou do resultado? Copie o objeto para `ferramentas/objetos-prontos.js` para a próxima vez.
-4. **Fazer.** `bash ferramentas/fazer-reel.sh reels/<data>-<objeto>` faz o som, o check, 3 fotos paradas,
+4. **Fazer.** `bash ferramentas/fazer-reel.sh <objeto>` (ou a pasta `reels/<data>-<objeto>`) faz o som, o check, 3 fotos paradas,
    o render (36 s, 1080 × 1920, 30 fps) e deixa tudo em `prontos/<data>-<objeto>/`
    (`reel.mp4`, 3 fotos, `legenda.txt`). O objeto vira `pronto`. **Nunca posta.**
 5. **Conferir as fotos.** Quem não leu o título reconhece o objeto pela foto do meio? Se não, ajuste as cores
