@@ -12,6 +12,8 @@
 
 Complete guide (landing page + step-by-step instructions): **https://inematds.github.io/reel-asmr-cortes/guia/en/**
 
+🎬 Video: https://www.youtube.com/watch?v=ILIh5bg7cEs
+
 ## Get started
 
 ```bash

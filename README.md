@@ -12,6 +12,8 @@ Reels "satisfatórios" (ASMR) seguram as pessoas na tela, mas produzir toda sema
 
 Guia completo (landing + passo a passo): **https://inematds.github.io/reel-asmr-cortes/guia/**
 
+🎬 Vídeo: https://www.youtube.com/watch?v=ILIh5bg7cEs
+
 ## Começar
 
 ```bash

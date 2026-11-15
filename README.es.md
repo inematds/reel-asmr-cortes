@@ -12,6 +12,8 @@ Los reels "satisfactorios" (ASMR) mantienen a la gente frente a la pantalla, per
 
 Guía completa (landing + paso a paso): **https://inematds.github.io/reel-asmr-cortes/guia/es/**
 
+🎬 Video: https://www.youtube.com/watch?v=ILIh5bg7cEs
+
 ## Empezar
 
 ```bash
